@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost5173",  "https://heartfelt-bonbon-258ac2.netlify.app/" ],
+  origin: ["http://localhost5173",  "https://heartfelt-bonbon-258ac2.netlify.app" ],
 }
 
 ));
