@@ -1,28 +1,25 @@
 import express from 'express';
 import notesRoutes from './routes/notesRoutes.js';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import { connectDB } from './config/db.js';
 import cors from 'cors';
 
-dotenv .config();
+const app = express();
 
-const app = express()
-app.use(cors({
-    origin: "http://localhost:5173"
-}));
-
-app.use(express.json())
-
+app.use(cors());
+app.use(express.json());
 
 app.use("/api/notes", notesRoutes);
 
-
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 connectDB()
-.then(() => { 
+  .then(() => {
     app.listen(PORT, () => {
-  console.log('Servidor levantado EN PUERTO http://localhost:' + PORT);
-})
-    
-}) 
+      console.log('Servidor levantado EN PUERTO ' + PORT);
+    });
+  })
+  .catch((error) => {
+    console.error("Error al conectar a MongoDB:", error);
+  });
+
